@@ -6,7 +6,21 @@ class Controller:
         self._model = model
 
     def handle_statistiche(self, e):
-        pass
+
+        serate = 0
+        try:
+            serate = int(self._view.dd_serate.value)
+        except TypeError:
+            self._view.avviso("Seleziona il numero di serate")
+        risultato = self._model.get_statistiche(serate)
+        self._view.mostra(risultato)
+
 
     def handle_programma(self, e):
-        pass
+        serate = 0
+        try:
+            serate = int(self._view.dd_serate.value)
+        except TypeError:
+            self._view.avviso("Seleziona il numero di serate")
+        risultato = self._model.get_programma_ottimo(serate)
+        self._view.mostra(["Programma ottimo"])
